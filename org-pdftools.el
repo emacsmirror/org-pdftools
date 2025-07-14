@@ -390,9 +390,10 @@ Returns components of the path"
   (concat file ".pdf: Page " page (when text (concat "; Quoting: " text))))
 
 ;;;###autoload
-(defun org-pdftools-open (link)
+(defun org-pdftools-open (link &optional arg)
   "Function to open org-pdftools LINK."
-  (if (and (display-graphic-p)
+  (if (and (not arg)
+           (display-graphic-p)
            (featurep 'pdf-tools))
       (org-pdftools-open-pdftools
        link)
